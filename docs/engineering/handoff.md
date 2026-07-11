@@ -14,6 +14,8 @@ It preserves issue, branch/worktree, progress, incomplete work, risks, validatio
 
 A handoff with current issue, current branch/worktree, goal, done, not done, important context, problems/risks, validation, and next step.
 
+When enabled in `docs/agents/issue-tracker.md`, handoff includes Project status and milestone state.
+
 ## Important Rule
 
 Be factual. Do not make progress sound more complete than it is.

@@ -14,6 +14,8 @@ It is the intake step for features, bugs, tasks, experiments, research, and larg
 
 A structured issue with goal, user value, scope, acceptance criteria, notes, and open questions.
 
+When enabled in `docs/agents/issue-tracker.md`, capture also applies Project status and milestones.
+
 ## Important Rule
 
 Capture does not implement. It preserves enough context for `/plan` to work.

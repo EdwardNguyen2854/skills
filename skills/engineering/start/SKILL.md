@@ -19,6 +19,7 @@ Read:
 
 - Issue title, body, and comments.
 - Approved implementation plan.
+- `docs/agents/issue-tracker.md`.
 - Any start preference from the user: `branch` or `worktree`.
 
 ### 2. Choose Branch Or Worktree
@@ -77,4 +78,5 @@ Post or provide:
 - Never start feature work directly on `main`.
 - Never use destructive git commands to make the workspace clean.
 - Do not build during `/start`.
-- Move project status to `Building` only when implementation is actually beginning.
+- Do not run `gh project` commands unless GitHub Project is enabled in `docs/agents/issue-tracker.md`.
+- Move project status to `Building` only when GitHub Project is enabled and implementation is actually beginning.

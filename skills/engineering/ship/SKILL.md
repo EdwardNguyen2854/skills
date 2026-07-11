@@ -32,6 +32,7 @@ Inspect:
 - Diff against the target branch.
 - Recent commits if commits already exist.
 - Issue status and review result.
+- `docs/agents/issue-tracker.md`.
 
 Do not use destructive git commands.
 
@@ -69,7 +70,7 @@ Post or provide:
 ## Closed
 ```
 
-Move project status to `Shipped` and close the issue only when the work is truly complete.
+If GitHub Project is enabled in `docs/agents/issue-tracker.md`, move project status to `Shipped` only when the work is truly complete. If GitHub Milestones are enabled, closing the issue should update milestone progress. Do not use Project or milestone commands when those settings are disabled.
 
 ## Rules
 

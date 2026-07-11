@@ -20,7 +20,7 @@ This workflow is based on one principle:
 
 > Plan Mode decides what to build. Build Mode implements only the approved plan. Review Mode checks whether the work is safe to merge.
 
-The workflow accepts that product understanding often emerges through iteration. Instead of requiring a complete roadmap or large upfront PRD, it uses stable documents, GitHub Issues, project boards, milestones, labels, and AI run notes to preserve direction and memory.
+The workflow accepts that product understanding often emerges through iteration. Instead of requiring a complete roadmap or large upfront PRD, it uses stable documents, GitHub Issues, optional project boards, optional milestones, labels, and AI run notes to preserve direction and memory.
 
 ### Core beliefs
 
@@ -322,7 +322,28 @@ It should define that:
 - GitHub Issues are the source of truth for PRDs, tasks, bugs, and experiments.
 - GitHub Issues should be managed with `gh` CLI.
 - Issue comments are used for plans, AI run summaries, review findings, and handoffs.
-- GitHub PRs can also be triaged using the same labels and project status.
+- GitHub PRs can also be triaged using the same labels and, when enabled, project status.
+- GitHub Projects and milestones are optional settings, not assumptions.
+
+It should include this settings block so every skill knows what it may touch:
+
+```md
+## Issue Tracker Settings
+
+| Setting | Value |
+|---|---|
+| GitHub Issues | enabled |
+| GitHub Project | disabled |
+| Project owner |  |
+| Project number |  |
+| Project title |  |
+| Project status field | Status |
+| GitHub Milestones | disabled |
+| Current milestone |  |
+| Workflow status fallback | issue comments |
+```
+
+When `GitHub Project` is `disabled`, agents should not run `gh project` commands. When `GitHub Milestones` is `disabled`, agents should not create or assign milestones.
 
 ---
 
@@ -332,7 +353,7 @@ Agent guide for labels.
 
 It should explain the label system and when each label should be used.
 
-Labels classify work. They should not replace project status.
+Labels classify work. By default they should not replace workflow state; use `status:*` labels only when the owner explicitly sets `Workflow status fallback` to `status labels`.
 
 ---
 
@@ -354,11 +375,11 @@ It should explain:
 
 ## 6. GitHub System
 
-This workflow uses GitHub as the active project management system.
+This workflow uses GitHub Issues as the active project management system. GitHub Projects and milestones are optional layers that must be enabled in `docs/agents/issue-tracker.md` before agents use them.
 
 ```text
-GitHub Project = execution board
-GitHub Milestone = release boundary
+GitHub Project = optional execution board
+GitHub Milestone = optional release boundary
 GitHub Labels = classification and filtering
 GitHub Issues = PRDs, tasks, bugs, experiments, and AI run memory
 GitHub PRs = review and merge surface
@@ -368,7 +389,9 @@ GitHub PRs = review and merge surface
 
 ## 7. GitHub Project
 
-The GitHub Project is the execution board.
+The GitHub Project is the optional execution board.
+
+Use it only when `docs/agents/issue-tracker.md` has `GitHub Project` set to `enabled`. If it is disabled, workflow state should live in issue comments. Do not add `status:*` labels unless the owner explicitly changes `Workflow status fallback` to `status labels`.
 
 Recommended project name:
 
@@ -416,19 +439,21 @@ Parked
 
 | View | Purpose |
 |---|---|
-| Current Release | Issues in the active milestone grouped by Status |
+| Current Release | Issues in the active milestone grouped by Status, when milestones are enabled |
 | Planning Queue | Issues in Inbox, Needs Plan, or Planning |
 | Build Queue | Issues in Ready for Build or Building |
 | Review Queue | Issues in Review, Fixing, or Ready to Ship |
 | Blocked / Decisions | Issues with `blocked` or `needs:decision` |
-| Backlog | Issues without a milestone |
+| Backlog | Issues without a milestone, when milestones are enabled |
 | Experiments | Issues labeled `type:experiment` |
 
 ---
 
 ## 8. GitHub Milestones
 
-Milestones represent releases.
+Milestones are optional release boundaries.
+
+Use them only when `docs/agents/issue-tracker.md` has `GitHub Milestones` set to `enabled`.
 
 Examples:
 
@@ -444,7 +469,7 @@ A milestone answers:
 - How much work remains?
 - What must be done before shipping?
 
-Milestones should not be used for workflow status. Status belongs in the GitHub Project board.
+Milestones should not be used for workflow status. When a GitHub Project is enabled, status belongs in the Project board.
 
 ### Relationship with release specs
 
@@ -660,7 +685,7 @@ Sets up the repository for the workflow.
 
 ### Purpose
 
-Create or update the core project documents, agent instructions, issue templates, label system, project board conventions, milestone conventions, and release spec structure.
+Create or update the core project documents, agent instructions, issue templates, label system, optional Project settings, optional milestone settings, and release spec structure.
 
 ### Should create or update
 
@@ -689,10 +714,11 @@ docs/agents/feature-loop.md
 
 ### GitHub setup responsibilities
 
-- Create or confirm the GitHub Project.
-- Create or confirm the current milestone.
+- Record tracker settings in `docs/agents/issue-tracker.md`.
 - Create or confirm standard labels.
-- Add guidance for project status values.
+- If GitHub Project is enabled, create or confirm the GitHub Project and status field.
+- If GitHub Milestones are enabled, create or confirm the current milestone.
+- Add guidance for project status values when a GitHub Project is enabled.
 
 ### Important rules
 
@@ -737,12 +763,11 @@ A GitHub Issue with:
 # Notes
 ```
 
-### Project behavior
+### Tracker behavior
 
-- Add the issue to the GitHub Project.
-- Set status to `Inbox` or `Needs Plan`.
 - Add type, area, priority, and needs labels.
-- Assign a milestone if the issue belongs to the current release.
+- If GitHub Project is enabled, add the issue to the GitHub Project and set status to `Inbox` or `Needs Plan`.
+- If GitHub Milestones are enabled, assign a milestone only when the issue belongs to the current release.
 
 ---
 
@@ -799,7 +824,7 @@ A plan comment on the issue:
 - Ask questions if the scope is unclear.
 - Surface conflicts with ADRs.
 - Keep the plan focused on the issue.
-- Move project status to `Planning`, then `Ready for Build` after approval.
+- If GitHub Project is enabled, move project status to `Planning`, then `Ready for Build` after approval.
 
 ---
 
@@ -960,11 +985,11 @@ Pass / Needs Changes
 Yes / No
 ```
 
-### Project behavior
+### Tracker behavior
 
-- Move issue to `Review` while reviewing.
-- Move issue to `Fixing` if changes are required.
-- Move issue to `Ready to Ship` if review passes.
+- If GitHub Project is enabled, move issue to `Review` while reviewing.
+- If GitHub Project is enabled, move issue to `Fixing` if changes are required.
+- If GitHub Project is enabled, move issue to `Ready to Ship` if review passes.
 
 ---
 
@@ -1042,12 +1067,12 @@ Merges completed work and closes the loop.
 ## Closed
 ```
 
-### Project behavior
+### Tracker behavior
 
-- Move issue to `Shipped`.
+- If GitHub Project is enabled, move issue to `Shipped`.
 - Close the GitHub Issue if complete.
 - Close or update the related PR.
-- Update the milestone progress automatically through closed issues.
+- If GitHub Milestones are enabled, update milestone progress automatically through closed issues.
 
 ---
 
@@ -1479,8 +1504,8 @@ These are replaced by:
 ```text
 docs/specs/v0.1.0.md
 GitHub Issues
-GitHub Project
-GitHub Milestones
+GitHub Project, when enabled
+GitHub Milestones, when enabled
 Issue templates
 DOD.md
 CHANGELOG.md
@@ -1504,10 +1529,10 @@ GitHub Issues
 = PRDs, tasks, bugs, experiments, plans, AI run notes
 
 GitHub Project
-= where work is now
+= optional board for where work is now
 
 GitHub Milestone
-= which release the work belongs to
+= optional release boundary for work
 
 Labels
 = what kind of work it is

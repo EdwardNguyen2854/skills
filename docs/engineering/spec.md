@@ -8,7 +8,7 @@ The release spec is the current release anchor. It is not a task tracker and sho
 
 - The owner wants to define `v0.1.0` or another release.
 - The current release needs goal, scope, acceptance criteria, risks, and open questions.
-- GitHub Issues need to be tied back to release intent.
+- GitHub Issues need to be tied back to release intent, with milestones only when enabled.
 
 ## Output
 

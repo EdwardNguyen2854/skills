@@ -14,6 +14,8 @@ It compares the implementation against the original issue, approved plan, accept
 
 A review report with pass/needs changes, checked items, issues found, required fixes, and safe-to-merge status.
 
+When GitHub Project is enabled in `docs/agents/issue-tracker.md`, review updates Project status.
+
 ## Important Rule
 
 Findings come first. The review should prioritize bugs, regressions, missed requirements, and scope creep.

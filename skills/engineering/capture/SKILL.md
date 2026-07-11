@@ -87,6 +87,8 @@ Experiment issue:
 
 Use `gh issue create` or `gh issue edit` when GitHub Issues are configured. If no tracker is configured, write the draft and ask where it should live.
 
+Read `docs/agents/issue-tracker.md` before touching Project or milestone state.
+
 Apply labels when obvious:
 
 - Type: `type:feature`, `type:bug`, `type:task`, `type:experiment`, `type:research`, `type:docs`, `type:refactor`, `type:chore`.
@@ -94,14 +96,17 @@ Apply labels when obvious:
 - Priority: only when the user or release spec makes priority clear.
 - Area: only when the affected area is clear.
 
-Assign a milestone only when the issue belongs to the current release.
+If GitHub Project is enabled, add the issue to the configured Project and set status to `Inbox` or `Needs Plan`.
+
+If GitHub Milestones are enabled, assign a milestone only when the issue belongs to the current release. If milestones are enabled but no current milestone is documented, ask before assigning one.
 
 ### 5. Final Output
 
 Return:
 
 - Issue URL or issue number.
-- Labels and milestone applied.
+- Labels applied.
+- Project status and milestone applied, if configured.
 - Any open questions.
 - Recommended next command, usually `/plan #<issue>`.
 
@@ -112,3 +117,5 @@ Return:
 - Keep acceptance criteria observable.
 - Use official domain terms from `CONTEXT.md` when present.
 - Do not use labels as workflow status if a GitHub Project status field exists.
+- Do not run `gh project` commands unless GitHub Project is enabled in `docs/agents/issue-tracker.md`.
+- Do not create or assign milestones unless GitHub Milestones are enabled in `docs/agents/issue-tracker.md`.

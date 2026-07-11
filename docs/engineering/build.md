@@ -14,6 +14,8 @@ It is the coding step, but it remains constrained by the issue, acceptance crite
 
 A build summary with changed files, validation performed, problems found, and follow-up work.
 
+When GitHub Project is enabled in `docs/agents/issue-tracker.md`, build moves the issue to `Building`.
+
 ## Important Rule
 
 New work becomes a follow-up issue unless required to satisfy the current acceptance criteria.

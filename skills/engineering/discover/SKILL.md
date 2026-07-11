@@ -26,6 +26,7 @@ Read relevant docs if present:
 
 - `VISION.md`
 - `CONTEXT.md`
+- `docs/agents/issue-tracker.md`
 - Current release spec
 - Relevant ADRs
 - Related issues

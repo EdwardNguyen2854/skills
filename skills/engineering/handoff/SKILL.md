@@ -15,6 +15,7 @@ Gather:
 
 - Current issue, if known.
 - Current branch or worktree.
+- `docs/agents/issue-tracker.md`, if present.
 - Goal of the work.
 - What is done.
 - What is not done.
@@ -34,6 +35,8 @@ Use this structure:
 
 ## Current Branch / Worktree
 
+## Tracker State
+
 ## Goal
 
 ## Done
@@ -52,6 +55,8 @@ Use this structure:
 ### 3. Save Or Post It
 
 Prefer posting the handoff as an issue comment when an issue exists.
+
+Include Project status and milestone only when GitHub Project or GitHub Milestones are enabled in `docs/agents/issue-tracker.md`.
 
 If there is no issue, save it as a temporary Markdown note only after telling the user where it will live.
 

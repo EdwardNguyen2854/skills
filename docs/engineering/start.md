@@ -14,6 +14,8 @@ It protects `main` from in-progress implementation and makes parallel AI work sa
 
 A start summary with issue, branch/worktree, approved plan, and next step.
 
+Project status is updated only when GitHub Project is enabled and implementation actually begins.
+
 ## Important Rule
 
 Never start feature work directly on `main`.

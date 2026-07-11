@@ -86,11 +86,12 @@ docs/agents/feature-loop.md
 .github/ISSUE_TEMPLATE/ai-run.md
 ```
 
-It also guides GitHub label, milestone, and project setup.
+It also guides GitHub label setup and logs whether GitHub Projects or milestones are enabled.
 
 ## Design Principles
 
 - GitHub Issues hold active requirements, plans, bugs, experiments, and run memory.
+- GitHub Projects and milestones are optional opt-ins recorded in `docs/agents/issue-tracker.md`.
 - Plan Mode decides what to build.
 - Build Mode implements only the approved plan.
 - Review Mode checks whether the work is safe to merge.

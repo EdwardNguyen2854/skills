@@ -20,6 +20,7 @@ Read:
 - Original issue.
 - Approved implementation plan.
 - Acceptance criteria.
+- `docs/agents/issue-tracker.md`.
 - `DOD.md`.
 - `CONTEXT.md`.
 - Relevant ADRs.
@@ -73,11 +74,13 @@ When there are findings, include file and line references where possible.
 
 ### 4. Update Workflow State
 
-If project status is configured:
+If GitHub Project is enabled in `docs/agents/issue-tracker.md`:
 
 - Move issue to `Review` while reviewing.
 - Move issue to `Fixing` if changes are required.
 - Move issue to `Ready to Ship` only if review passes.
+
+If GitHub Project is disabled, do not use `gh project` commands. Record the review result in the issue comment instead.
 
 ## Rules
 

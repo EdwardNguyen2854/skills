@@ -14,6 +14,8 @@ It checks that review passed, acceptance criteria are met, changelog updates are
 
 A ship summary with merge status, user-facing changes, validation, changelog status, follow-up issues, and closure status.
 
+When enabled in `docs/agents/issue-tracker.md`, ship updates Project status and milestone progress.
+
 ## Important Rule
 
 Do not ship if review says `Safe to merge: No`.

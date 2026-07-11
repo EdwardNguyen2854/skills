@@ -21,6 +21,7 @@ Read:
 - `VISION.md`.
 - `CONTEXT.md`.
 - `DOD.md`.
+- `docs/agents/issue-tracker.md`.
 - Current release spec under `docs/specs/`.
 - Relevant ADRs under `docs/adr/`.
 - Relevant source files and tests.
@@ -61,10 +62,12 @@ Keep proposed steps small enough that Build Mode can follow them without inventi
 
 ### 4. Update Workflow State
 
-If GitHub Project conventions are configured:
+If GitHub Project is enabled in `docs/agents/issue-tracker.md`:
 
 - Move the issue to `Planning` while planning.
 - Move the issue to `Ready for Build` only after the owner approves the plan.
+
+If GitHub Project is disabled, leave workflow state in issue comments. If Project is enabled but owner, number, or status field is missing, ask before trying to update Project state.
 
 ### 5. Stop
 

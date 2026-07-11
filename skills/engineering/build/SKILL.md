@@ -25,12 +25,15 @@ Read:
 
 - Issue body and comments.
 - Approved implementation plan.
+- `docs/agents/issue-tracker.md`.
 - `CONTEXT.md`.
 - `DOD.md`.
 - Relevant ADRs.
 - Relevant code and tests.
 
 ### 2. Implement In Small Steps
+
+If GitHub Project is enabled in `docs/agents/issue-tracker.md`, move the issue to `Building` when implementation actually begins. If Project is disabled, do not use `gh project` commands.
 
 Follow the approved steps. Prefer the smallest correct change.
 

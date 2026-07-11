@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Create or update a lightweight release spec for the issue-first workflow. Use when the user runs /spec, asks for a release spec, wants to define v0.1.0 scope, or needs current release intent connected to GitHub Issues and milestones.
+description: Create or update a lightweight release spec for the issue-first workflow. Use when the user runs /spec, asks for a release spec, wants to define v0.1.0 scope, or needs current release intent connected to GitHub Issues and optional milestones.
 ---
 
 # Spec
@@ -22,8 +22,9 @@ Read:
 - `VISION.md`
 - `CONTEXT.md`
 - `DOD.md`
+- `docs/agents/issue-tracker.md`
 - Existing release specs under `docs/specs/`
-- Relevant issues and milestones
+- Relevant issues and milestones, when milestones are enabled
 - Relevant ADRs
 
 ### 3. Draft Or Update The Spec
@@ -62,11 +63,12 @@ Use this structure:
 
 ### 4. Connect To GitHub
 
-If GitHub is configured:
+If GitHub Issues are configured:
 
 - Link key issues.
-- Align with the matching GitHub Milestone.
 - Do not use the spec as a task tracker. Tasks belong in issues.
+
+If GitHub Milestones are enabled in `docs/agents/issue-tracker.md`, align the spec with the matching GitHub Milestone. If milestones are disabled, keep release intent in the spec and do not create or assign milestones.
 
 ## Rules
 

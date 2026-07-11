@@ -20,10 +20,13 @@ Read:
 - The issue.
 - Approved implementation plan.
 - Review report.
+- `docs/agents/issue-tracker.md`.
 - Changed files.
 - Validation failures, if any.
 
 ### 2. Fix Only Required Findings
+
+If GitHub Project is enabled in `docs/agents/issue-tracker.md`, move or keep the issue in `Fixing` while addressing required fixes. If Project is disabled, do not use `gh project` commands.
 
 For each required fix:
 

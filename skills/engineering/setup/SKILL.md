@@ -1,6 +1,6 @@
 ---
 name: setup
-description: Set up a repository for issue-first AI development. Use when the user runs /setup or asks to configure a repo with planning docs, GitHub Issues, issue templates, labels, milestones, AGENTS.md guidance, ADRs, Definition of Done, and the Capture, Plan, Start, Build, Review, Ship loop.
+description: Set up a repository for issue-first AI development. Use when the user runs /setup or asks to configure a repo with planning docs, GitHub Issues, optional GitHub Projects, optional milestones, issue templates, labels, AGENTS.md guidance, ADRs, Definition of Done, and the Capture, Plan, Start, Build, Review, Ship loop.
 ---
 
 # Setup
@@ -22,6 +22,7 @@ Inspect the current repo before proposing changes:
 - `git remote -v` and `.git/config` if present.
 - Existing `README.md`, `VISION.md`, `CONTEXT.md`, `DOD.md`, `CHANGELOG.md`, `AGENTS.md`, `CLAUDE.md`.
 - Existing `docs/specs/`, `docs/adr/`, `docs/agents/`.
+- Existing `docs/agents/issue-tracker.md`, especially `Issue Tracker Settings`.
 - Existing `.github/ISSUE_TEMPLATE/` files.
 - Current package/build/test commands if the repo has application code.
 - Whether `gh` is available and authenticated if GitHub setup is requested.
@@ -70,10 +71,33 @@ Keep every file lightweight and editable. Do not create fake ADRs.
 
 If the repo uses GitHub and the user wants GitHub setup:
 
-- Confirm or create the current milestone, usually `v0.1.0`.
+- Use GitHub Issues as the default tracker.
+- Ask or infer whether GitHub Project and GitHub Milestones should be enabled. Default to disabled when unclear.
+- Record the settings in `docs/agents/issue-tracker.md`.
 - Confirm or create labels for type, area, priority, needs, and risk.
-- Document the recommended project status values in `docs/agents/issue-tracker.md`.
-- Do not force-create a GitHub Project if permissions or preferences are unclear. Record the intended project convention instead.
+- If GitHub Project is enabled, confirm or create the Project and document the owner, number, title, and status field.
+- If GitHub Milestones are enabled, confirm or create the current milestone, usually `v0.1.0`.
+- Do not force-create a GitHub Project or milestone if permissions or preferences are unclear. Record the setting as disabled or leave the missing value blank and tell the owner.
+
+Settings block for `docs/agents/issue-tracker.md`:
+
+```md
+## Issue Tracker Settings
+
+| Setting | Value |
+|---|---|
+| GitHub Issues | enabled |
+| GitHub Project | disabled |
+| Project owner |  |
+| Project number |  |
+| Project title |  |
+| Project status field | Status |
+| GitHub Milestones | disabled |
+| Current milestone |  |
+| Workflow status fallback | issue comments |
+```
+
+If `GitHub Project` is disabled, agents should not run `gh project` commands. If `GitHub Milestones` is disabled, agents should not create or assign milestones. Do not use `status:*` labels unless `Workflow status fallback` is explicitly set to `status labels`.
 
 Recommended project statuses:
 
@@ -96,7 +120,8 @@ Report:
 
 - Files created.
 - Files updated.
-- GitHub labels, milestone, or project conventions configured.
+- GitHub labels configured.
+- GitHub Project and milestone settings recorded.
 - Anything intentionally left for the owner.
 
 ## File Guidance
@@ -129,4 +154,5 @@ Tell AI agents which docs to read first, how to use GitHub Issues, how to follow
 - Do not create fake ADRs.
 - Do not invent product vision details. Use placeholders or ask.
 - Prefer GitHub Issues for active work.
+- Treat GitHub Projects and milestones as opt-in settings from `docs/agents/issue-tracker.md`.
 - Keep setup lightweight. The owner should be able to edit everything by hand.
