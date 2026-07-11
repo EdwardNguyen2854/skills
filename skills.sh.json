@@ -1,0 +1,23 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Issue-First Development",
+      "description": "Skills for planning, building, reviewing, and shipping AI-assisted work through GitHub Issues.",
+      "skills": [
+        "setup",
+        "capture",
+        "plan",
+        "start",
+        "build",
+        "review",
+        "fix-review",
+        "ship",
+        "discover",
+        "spec",
+        "handoff"
+      ]
+    }
+  ]
+}
