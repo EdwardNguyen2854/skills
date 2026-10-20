@@ -1,10 +1,10 @@
-# Skills for Issue-First AI Development
+# Skills for turning vision into working software
 
 [![skills.sh](https://skills.sh/b/edwardnguyen2854/skills)](https://skills.sh/edwardnguyen2854/skills)
 
-Reusable agent skills for a lightweight, issue-first AI development loop.
+Tool-neutral agent skills for product owners who want to describe an outcome, clarify what matters, plan carefully, and get working, tested software without running the engineering process themselves.
 
-This repo turns the process in [`WORKFLOW.md`](./WORKFLOW.md) into installable skills that help agents plan, build, review, and ship work without turning a solo or small-team project into a heavyweight process.
+The owner does not need a coding background. The skills ask about product behavior in everyday language, investigate technical choices for the owner, use focused workers where useful, keep compact local progress, and review the real code rather than asking the owner to review it.
 
 ## Quickstart
 
@@ -14,101 +14,153 @@ Install the collection:
 npx skills add edwardnguyen2854/skills
 ```
 
-Then run:
+Then describe what you want to build. To configure project guidance and local progress records first:
 
 ```text
 /setup
 ```
 
-`/setup` configures a target repository with the documents, issue templates, labels, and agent guidance that the other skills expect.
-
-## Core Loop
+Start or change a product/feature:
 
 ```text
-Capture -> Plan -> Start -> Build -> Review -> Fix -> Ship
+/create
 ```
 
-In practice:
+Continue saved work in a new session:
 
 ```text
-GitHub Issue
-  -> approved implementation plan
-  -> branch or worktree
-  -> scoped implementation
-  -> review gate
-  -> merge and changelog
+/resume
 ```
 
-The goal is not to replace judgment with process. The goal is to preserve context across many human and AI development runs.
+Move one bounded update forward:
+
+```text
+/next
+```
+
+## Working model
+
+```text
+Vision or change request
+  -> understandable clarification
+  -> written plan + independent plan review
+  -> approval or scoped delegated approval
+  -> safe feature branch
+  -> bounded implementation with focused workers
+  -> current-code verification + agent code review
+  -> agent-reviewed PR (when upload permission exists)
+```
+
+Planning always happens before application code. The depth adapts to the work; it is not skipped for small changes.
+
+Default collaboration is **Work with me**: consequential product questions and plan revisions wait for the owner. If the owner explicitly authorizes **Use your judgment** for a named feature/update or session, the agent may record safe assumptions and approve a carefully reviewed plan within that scope. Spending money, destructive actions, private-data disclosure, production changes, merging, release and publication still need specific permission.
+
+"Complete" means the agreed behavior works and was verified on the current integrated code. It does not imply that a PR was opened, merged, deployed or published.
 
 ## Skills
 
-All skills are user-invoked command skills.
+### Main entry points
 
 | Skill | Purpose |
 |---|---|
-| [`setup`](./skills/engineering/setup/SKILL.md) | Set up a repository for the issue-first workflow. |
-| [`capture`](./skills/engineering/capture/SKILL.md) | Turn a rough idea into a GitHub Issue or improve an existing issue. |
-| [`plan`](./skills/engineering/plan/SKILL.md) | Create an implementation plan without writing code. |
-| [`start`](./skills/engineering/start/SKILL.md) | Create the branch or worktree for approved work. |
-| [`build`](./skills/engineering/build/SKILL.md) | Implement only the approved plan. |
-| [`review`](./skills/engineering/review/SKILL.md) | Review a completed implementation before merge. |
-| [`fix-review`](./skills/engineering/fix-review/SKILL.md) | Fix only the issues found during review. |
-| [`ship`](./skills/engineering/ship/SKILL.md) | Merge completed work and close the loop. |
-| [`discover`](./skills/engineering/discover/SKILL.md) | Map unclear work before it becomes issues or specs. |
-| [`spec`](./skills/engineering/spec/SKILL.md) | Create or update a lightweight release spec. |
-| [`handoff`](./skills/engineering/handoff/SKILL.md) | Capture enough state for another agent or session to continue. |
+| [`setup`](./skills/setup/SKILL.md) | Configure minimal project guidance, records and preferences without issue-tracker overhead. |
+| [`create`](./skills/create/SKILL.md) | Guide an idea or change from understanding through verified delivery. |
+| [`resume`](./skills/resume/SKILL.md) | Reconcile saved progress with actual files, branches, PRs and workers, then continue safely. |
+| [`next`](./skills/next/SKILL.md) | Propose and, when authorized, carry out one bounded next update. |
 
-## What Gets Created By `/setup`
+### Planning and delivery
 
-The setup skill helps create or update:
+| Skill | Purpose |
+|---|---|
+| [`clarify`](./skills/clarify/SKILL.md) | Ask useful, understandable questions and decide safely within scoped authority. |
+| [`plan`](./skills/plan/SKILL.md) | Create and review a right-sized implementation plan before code. |
+| [`execute`](./skills/execute/SKILL.md) | Coordinate safe branches, bounded tasks, workers, integration and checkpoints. |
+| [`review`](./skills/review/SKILL.md) | Review plans and actual code/PRs for product fit, correctness and risk. |
+| [`verify`](./skills/verify/SKILL.md) | Require current evidence before claiming completion. |
+| [`diagnose`](./skills/diagnose/SKILL.md) | Investigate failures with a reproducible feedback loop instead of guessing. |
+| [`checkpoint`](./skills/checkpoint/SKILL.md) | Save compact state so another session can resume without stale claims. |
+
+### Product care
+
+| Skill | Purpose |
+|---|---|
+| [`tidy`](./skills/tidy/SKILL.md) | Audit unused files and layout, then perform approved, recoverable cleanup. |
+| [`security-review`](./skills/security-review/SKILL.md) | Review security, privacy, data-loss and operational risk in plain language. |
+| [`ui-ux`](./skills/ui-ux/SKILL.md) | Improve real user journeys, clarity, accessibility, states and visual quality. |
+
+Supporting skills are normally loaded by `create`, `next`, `plan`, `execute` and `resume`; the owner does not need to invoke each one manually.
+
+## Moving an update forward with one instruction
+
+You can say:
+
+> Plan the next update, review the plan, implement it, and go. Use your judgment.
+
+The `next` skill inspects the vision, actual behavior, unfinished work, feedback and risks; chooses one useful bounded update; reviews its plan before coding; checks the branch; implements and tests; arranges agent code review plus relevant security and UI/UX checks; and delivers within existing permission. It then stops and recommends a next step instead of starting an endless loop.
+
+`go` does not authorize upload, merge, release or deployment. Open/update a PR only with scoped upload permission. Merge, tag, deploy and publish remain separate decisions.
+
+## Branches and agent-reviewed PRs
+
+Focused branches and PRs are the default delivery shape, without using the PR platform as a task tracker.
+
+Before work the agent checks the actual default/target branch, current branch purpose, uncommitted changes, commits and related PR. If the owner is on the default branch or another feature's branch, the agent explains the risk and proposes safe isolation without stashing, discarding or moving unknown work.
+
+The agent reviews the code/PR itself; the owner is not expected to review code. Required human approvals and protected-branch rules are still honored, never bypassed or faked. A review applies only to the revision actually inspected; new commits or a changed base require affected checks/review again.
+
+## Local progress without a second project manager
+
+With approval, setup creates a small `.work/` record:
 
 ```text
-README.md
-VISION.md
-CONTEXT.md
-DOD.md
-CHANGELOG.md
-AGENTS.md
-
-docs/specs/v0.1.0.md
-docs/adr/README.md
-docs/adr/template.md
-docs/agents/domain.md
-docs/agents/issue-tracker.md
-docs/agents/triage-labels.md
-docs/agents/feature-loop.md
-
-.github/ISSUE_TEMPLATE/feature.md
-.github/ISSUE_TEMPLATE/bug.md
-.github/ISSUE_TEMPLATE/task.md
-.github/ISSUE_TEMPLATE/experiment.md
-.github/ISSUE_TEMPLATE/ai-run.md
+.work/
+  project.md
+  features/
+    saved-products/
+      plan.md
+      progress.md
+      decisions.md
 ```
 
-It also guides GitHub label setup and logs whether GitHub Projects or milestones are enabled.
+Significant long-lived architecture choices also get ADRs at an existing project convention, otherwise `docs/adr/`.
 
-## Design Principles
+Native task and delegation capabilities are used when available; `.work/` is compact durable memory, not a replacement scheduler. Before resuming, the agent checks actual files, branch/PR state and evidence instead of trusting checkboxes. Permission is recovered from current authoritative records, never by rolling back to an older snapshot that granted more.
 
-- GitHub Issues hold active requirements, plans, bugs, experiments, and run memory.
-- GitHub Projects and milestones are optional opt-ins recorded in `docs/agents/issue-tracker.md`.
-- Plan Mode decides what to build.
-- Build Mode implements only the approved plan.
-- Review Mode checks whether the work is safe to merge.
-- Branches or worktrees isolate implementation work from `main`.
-- ADRs preserve important decisions so future runs do not undo them.
-- `CHANGELOG.md` records what actually shipped.
+If records are declined, an approved alternative location or session-only help is available; durable resume and ADR promises then do not apply.
 
-## Acknowledgements
+See the full [workflow](./WORKFLOW.md), the [shared contract](./skills/references/contract.md) and [record/ADR templates](./skills/references/templates.md).
 
-This skills collection is inspired by Matt Pocock's excellent [Skills for Real Engineers](https://github.com/mattpocock/skills).
+## Design
 
-Matt's repo shaped the idea of small, composable agent skills that preserve engineering judgment instead of replacing it with a heavyweight process. This repo adapts that spirit into an issue-first development loop centered on GitHub Issues, planning gates, branch/worktree isolation, review, and shipping.
+The redesign rationale, detailed safeguards and acceptance scenarios live in:
+
+- [From vision to working product](./docs/redesign/README.md)
+- [Product quality and delivery](./docs/redesign/product-quality.md)
+- [Acceptance scenarios](./docs/redesign/scenarios.md)
+- [Review results](./docs/redesign/review-results.md)
+
+The previous issue-first collection is preserved under [`legacy/`](./legacy/README.md). It is not part of the active plugin.
 
 ## Development
 
-Validate the repo metadata and skill wiring:
+Requires Node.js 20+.
 
 ```bash
+npm test       # parser unit tests, including CRLF/LF
 npm run validate
+npm run check  # both
 ```
+
+Validation checks frontmatter, unique names, descriptions, relative skill references, docs, plugin wiring and skills.sh groupings. It does not prove runtime skill behavior; the acceptance scenarios must be exercised separately.
+
+## Acknowledgements
+
+This collection learns from several public skill systems:
+
+- [Matt Pocock's Skills for Real Engineers](https://github.com/mattpocock/skills) for small, composable engineering practices.
+- [Cursor pstack](https://github.com/cursor/plugins/tree/main/pstack) for focused routing and disciplined delegation.
+- [Superpowers](https://github.com/obra/superpowers) for clarification, testing discipline, independent review and evidence-based completion.
+- [GSD Core](https://github.com/open-gsd/gsd-core) for durable context and fresh, dependency-aware execution.
+- [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) for adaptive planning depth and carrying product intent into delivery.
+
+This is an independent collection, not a fork or copy of their workflows.
