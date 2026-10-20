@@ -7,7 +7,7 @@ description: Save a compact, consistent snapshot of plan, progress, permissions,
 
 Save enough state to resume safely without turning the record into a transcript.
 
-Read [the shared delivery contract](../references/contract.md) and use [the record templates](../references/templates.md).
+Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
 ## Capture
 

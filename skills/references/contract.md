@@ -97,7 +97,7 @@ Default location `.work/`:
     decisions.md
 ```
 
-Use `skills/references/templates.md`. Create records only as needed. A short plan and progress record are required for implementation; `decisions.md` only when there are decisions or delegated authority to record. Significant architecture decisions go in the existing ADR convention, otherwise `docs/adr/`, not merely in progress notes.
+Use [the record templates](templates.md). Create records only as needed. A short plan and progress record are required for implementation; `decisions.md` only when there are decisions or delegated authority to record. Significant architecture decisions go in the existing ADR convention, otherwise `docs/adr/`, not merely in progress notes.
 
 Ask before creating records or changing project guidance. If the owner declines, offer another approved location or session-only help. Explain that session-only work cannot promise durable resume/ADRs. In session-only help, keep plan/authority in the conversation and available live tasks; do not create records or unattended background writers.
 

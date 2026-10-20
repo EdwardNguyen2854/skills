@@ -7,7 +7,7 @@ description: Resume saved work in a new session by reconciling local records wit
 
 Reconstruct the real state before continuing.
 
-Read [the shared delivery contract](../references/contract.md) and use [the record templates](../references/templates.md).
+Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
 ## 1. Find the work
 

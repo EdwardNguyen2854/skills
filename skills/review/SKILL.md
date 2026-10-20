@@ -7,7 +7,7 @@ description: Review an implementation plan, code change, or pull request for pro
 
 Review evidence, not claims. Review plans before coding and finished changes separately.
 
-Read [the shared delivery contract](../references/contract.md).
+Read [the shared delivery contract](references/contract.md).
 
 ## Establish the target
 

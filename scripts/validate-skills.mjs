@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   countWords,
@@ -114,7 +114,13 @@ for (const skillName of skillNames) {
       continue;
     }
     if (!decoded.value) continue;
-    if (!existsSync(resolve(dirname(skillPath), decoded.value))) {
+    const destination = resolve(dirname(skillPath), decoded.value);
+    const insideSkill = relative(skillDir, destination);
+    if (insideSkill.startsWith("..") || isAbsolute(insideSkill)) {
+      errors.push(`${relSkillPath}: link ${target} escapes the installed skill directory`);
+      continue;
+    }
+    if (!existsSync(destination)) {
       errors.push(`${relSkillPath}: broken relative link ${target}`);
     }
   }
@@ -182,6 +188,13 @@ for (const file of activeMarkdown) {
     }
 
     const destination = decodedPath.value ? resolve(dirname(absolute), decodedPath.value) : absolute;
+    if (file.startsWith("skills/references/")) {
+      const insideReference = relative(join(root, "skills", "references"), destination);
+      if (insideReference.startsWith("..") || isAbsolute(insideReference)) {
+        errors.push(`${file}: link ${target} escapes the installed reference directory`);
+        continue;
+      }
+    }
     if (!existsSync(destination)) {
       errors.push(`${file}: broken link ${target}`);
       continue;

@@ -7,7 +7,7 @@ description: Audit unused files and project organization, then carry out an appr
 
 Clean up with evidence, not cosmetic guesswork.
 
-Read [the shared delivery contract](../references/contract.md).
+Read [the shared delivery contract](references/contract.md).
 
 ## 1. Inspect
 

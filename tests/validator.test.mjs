@@ -1,27 +1,12 @@
 import assert from "node:assert/strict";
-import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { tmpdir } from "node:os";
-import { join, sep } from "node:path";
-import { spawnSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
 import { test } from "node:test";
-
-const repoRoot = fileURLToPath(new URL("../", import.meta.url));
-
-function copyRepository() {
-  const destination = mkdtempSync(join(tmpdir(), "skills-validator-"));
-  cpSync(repoRoot, destination, {
-    recursive: true,
-    filter: (source) => !source.includes(`${sep}.git${sep}`) && !source.endsWith(`${sep}.git`),
-  });
-  return destination;
-}
+import { copyRepository, removeDirectory, repoRoot, runScript } from "./repo-fixture.mjs";
 
 function runValidator(directory, cwd = directory) {
-  return spawnSync(process.execPath, [join(directory, "scripts", "validate-skills.mjs")], {
-    cwd,
-    encoding: "utf8",
-  });
+  return runScript(directory, "validate-skills.mjs", [], cwd);
 }
 
 test("validates the repository regardless of the caller's working directory", () => {
@@ -42,7 +27,7 @@ test("rejects duplicate plugin entries", () => {
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /duplicate skill entries/);
   } finally {
-    rmSync(directory, { recursive: true, force: true });
+    removeDirectory(directory);
   }
 });
 
@@ -57,7 +42,7 @@ test("reports malformed link encoding without crashing", () => {
     assert.doesNotMatch(result.stderr, /URIError/);
     assert.match(result.stderr, /invalid link encoding/);
   } finally {
-    rmSync(directory, { recursive: true, force: true });
+    removeDirectory(directory);
   }
 });
 
@@ -72,6 +57,35 @@ test("rejects missing required record-template fields", () => {
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /Tested content ID/);
   } finally {
-    rmSync(directory, { recursive: true, force: true });
+    removeDirectory(directory);
+  }
+});
+
+test("rejects skill links that escape the installed skill directory", () => {
+  const directory = copyRepository();
+  try {
+    const skillPath = join(directory, "skills", "create", "SKILL.md");
+    const skill = readFileSync(skillPath, "utf8").replace("references/contract.md", "../references/contract.md");
+    writeFileSync(skillPath, skill);
+
+    const result = runValidator(directory);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /escapes the installed skill directory/);
+  } finally {
+    removeDirectory(directory);
+  }
+});
+
+test("rejects reference links that escape the installed references directory", () => {
+  const directory = copyRepository();
+  try {
+    const contractPath = join(directory, "skills", "references", "contract.md");
+    writeFileSync(contractPath, `${readFileSync(contractPath, "utf8")}\n[escape](../../README.md)\n`);
+
+    const result = runValidator(directory);
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /escapes the installed reference directory/);
+  } finally {
+    removeDirectory(directory);
   }
 });

@@ -7,7 +7,7 @@ description: Investigate a bug, failing test, performance problem, or unexpected
 
 Find and fix the cause, not just the symptom.
 
-Read [the shared delivery contract](../references/contract.md).
+Read [the shared delivery contract](references/contract.md).
 
 ## 1. Reproduce
 

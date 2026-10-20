@@ -7,7 +7,7 @@ description: Review a product or code change for security, privacy, data-loss an
 
 Find meaningful risks and block readiness appropriately. This is a design/code review, not a promise of security.
 
-Read [the shared delivery contract](../references/contract.md).
+Read [the shared delivery contract](references/contract.md).
 
 ## Scope and permission
 

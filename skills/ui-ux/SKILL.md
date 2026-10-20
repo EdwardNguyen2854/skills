@@ -7,7 +7,7 @@ description: Improve the user experience and interface of an application, includ
 
 Improve how people understand and accomplish the product's real tasks.
 
-Read [the shared delivery contract](../references/contract.md).
+Read [the shared delivery contract](references/contract.md).
 
 ## 1. Understand users and journeys
 
