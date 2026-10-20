@@ -7,7 +7,7 @@ description: Guide a product owner from a vision or change request to working, t
 
 Turn the owner's intent into a small useful result they can try. You are the coordinator: keep the product goal, decisions, plan, dependencies and evidence coherent.
 
-Read [the shared delivery contract](../references/contract.md) and use [the record templates](../references/templates.md).
+Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
 ## 1. Understand the request
 

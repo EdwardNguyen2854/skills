@@ -1,6 +1,6 @@
 # Implementation status
 
-Status: implemented in the repository on branch `design/vision-to-product`; runtime workflow scenarios have **not** been executed. Static validation and parser tests pass.
+Status: implemented in the repository and statically validated; runtime workflow scenarios have **not** been executed. A local install smoke test confirmed that an installed skill includes its reference files.
 
 ## Implemented
 
@@ -16,13 +16,15 @@ Status: implemented in the repository on branch `design/vision-to-product`; runt
 | Product care | Safe cleanup, security/risk review, durable ADRs and UI/UX review. |
 | Migration | Legacy issue-first skills/docs moved to `legacy/` and excluded from active plugin metadata. |
 | Validation | CRLF/LF-safe frontmatter parser, tests, metadata/link/docs checks and CI `npm run check`. |
+| Installation packaging | Each skill ships generated `references/` copies from the shared source because installers copy only one skill directory; validation rejects missing, stale or escaping references. |
 
 ## Validation performed
 
-- `npm test` — 15 parser/helper/validator tests pass.
-- `npm run validate` — 14 skills and repository metadata pass.
+- `npm test` — 21 parser/helper/validator/packaging tests pass.
+- `npm run validate` — 14 skills, installed reference sets and repository metadata pass.
 - Local links and heading anchors across active and design docs are checked by the validator.
 - Record-template required fields are checked deterministically.
+- A local `npx skills add` smoke test installed `create` under the detected agent directory with `SKILL.md`, `references/contract.md`, `references/templates.md` and a working relative template link.
 - Design documents were reviewed by fresh-context reviewers during planning; implementation diff review was performed and material findings were addressed before delivery.
 
 ## Not verified
@@ -31,7 +33,7 @@ Status: implemented in the repository on branch `design/vision-to-product`; runt
 - Branch/PR behavior against a real remote, required checks and protected-branch rules has not been exercised.
 - Native task/delegation capability variations, worker interruption recovery and session-only operation have not been exercised.
 - Cleanup, security and UI/UX skills have not been run against a representative product.
-- `npx skills add` installation and cross-tool discovery have not been retested.
+- `npx skills add` installation was smoke-tested for one skill with copy mode; other agents, symlink mode, updates and cross-tool discovery have not been exercised.
 - Static checks do not prove that agents will follow the instructions, nor that an independent reviewer exists in every tool.
 
 These gaps mean the implementation is **statically checked and ready for scenario testing**, not proven production-ready.

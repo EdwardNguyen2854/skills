@@ -7,7 +7,7 @@ description: Verify that the requested behavior actually works on the current in
 
 Gate completion claims on current evidence.
 
-Read [the shared delivery contract](../references/contract.md).
+Read [the shared delivery contract](references/contract.md).
 
 ## Define what must be true
 

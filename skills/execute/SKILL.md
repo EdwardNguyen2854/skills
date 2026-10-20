@@ -7,7 +7,7 @@ description: Safely implement an approved plan with bounded tasks, branch isolat
 
 Implement the approved plan. You are the coordinator: workers return results; you own integration and shared records.
 
-Read [the shared delivery contract](../references/contract.md) and use [the record templates](../references/templates.md).
+Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
 ## Before editing
 

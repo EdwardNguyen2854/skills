@@ -12,6 +12,7 @@ All notable changes to this skills collection will be documented in this file.
 - Durable architecture decision records and compact `.work/` progress records with safe resume reconciliation.
 - Focused-worker coordination and agent-reviewed branch/PR delivery, with separate upload, merge and release permissions.
 - Design documentation, shared contract/templates and 43 acceptance scenarios.
+- Self-contained per-skill installed reference copies generated from the shared source, with install-layout and stale-copy checks.
 - CRLF/LF-safe frontmatter parsing and validator tests.
 
 ### Changed

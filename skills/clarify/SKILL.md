@@ -7,7 +7,7 @@ description: Ask a product owner useful, understandable questions and resolve un
 
 Resolve uncertainty without turning the owner into a project manager or engineer.
 
-Read [the shared delivery contract](../references/contract.md).
+Read [the shared delivery contract](references/contract.md).
 
 ## Inspect first
 

@@ -7,7 +7,7 @@ description: Set up a project for vision-to-product delivery with minimal local 
 
 Set up only what this project needs. This is not a GitHub or project-management installation.
 
-Read [the shared delivery contract](../references/contract.md) and use [the record templates](../references/templates.md).
+Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
 ## 1. Inspect
 

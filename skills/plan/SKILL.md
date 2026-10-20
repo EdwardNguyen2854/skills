@@ -7,7 +7,7 @@ description: Create and review a careful, right-sized implementation plan before
 
 Produce a plan a coding agent can follow and the owner can understand. Do not write application code during planning.
 
-Read [the shared delivery contract](../references/contract.md) and use [the record templates](../references/templates.md).
+Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
 ## 1. Load context
 

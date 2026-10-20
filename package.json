@@ -10,7 +10,8 @@
   "license": "MIT",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "validate": "node scripts/validate-skills.mjs",
+    "sync:references": "node scripts/sync-skill-references.mjs",
+    "validate": "node scripts/sync-skill-references.mjs --check && node scripts/validate-skills.mjs",
     "check": "npm test && npm run validate"
   },
   "packageManager": "npm@10.9.4"

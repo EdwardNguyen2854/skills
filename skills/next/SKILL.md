@@ -7,7 +7,7 @@ description: Propose and, when authorized, carry out one bounded next product up
 
 Move one useful update forward without turning it into an endless autonomous loop.
 
-Read [the shared delivery contract](../references/contract.md) and use [the record templates](../references/templates.md).
+Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
 ## Interpret the instruction
 

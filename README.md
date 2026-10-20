@@ -146,12 +146,15 @@ The previous issue-first collection is preserved under [`legacy/`](./legacy/READ
 Requires Node.js 20+.
 
 ```bash
-npm test       # parser unit tests, including CRLF/LF
+npm test                 # parser, validator and packaging tests
+npm run sync:references  # regenerate per-skill installed reference copies
 npm run validate
-npm run check  # both
+npm run check            # both
 ```
 
-Validation checks frontmatter, unique names, descriptions, relative skill references, docs, plugin wiring and skills.sh groupings. It does not prove runtime skill behavior; the acceptance scenarios must be exercised separately.
+Each skill ships a `references/` directory generated from `skills/references/`, because installers copy only the individual skill directory. Treat those directories as generated: edit the shared source files, then run `npm run sync:references`. Hand-authored files in a skill's `references/` directory are not preserved; validation fails if an installed copy is missing, stale or obsolete.
+
+Validation also checks frontmatter, unique names, descriptions, relative links inside each skill, docs, plugin wiring, skills.sh groupings and required template fields. It does not prove runtime skill behavior; the acceptance scenarios must be exercised separately.
 
 ## Acknowledgements
 

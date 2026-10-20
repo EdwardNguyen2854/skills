@@ -59,11 +59,12 @@ After implementation, fresh-context reviewers inspected the actual working tree 
 - A passing review verdict no longer implies upload or PR permission.
 - First use routes through permission-first setup; reduced native-task capability uses local task statuses with the limitation disclosed.
 - Validation now rejects duplicate metadata, bad name formats, malformed links, missing template fields and broken design/legacy documentation links, and derives its root from the script location.
+- Installed skills now ship generated `references/` copies from the shared source; validation rejects stale, missing or escaping copies, and a local installer smoke test confirmed the installed layout.
 
-`npm test` (15 tests) and `npm run validate` pass. The 43 acceptance scenarios remain unexecuted behavior specifications.
+`npm test` (21 tests) and `npm run validate` pass. The 43 acceptance scenarios remain unexecuted behavior specifications.
 
-## Next implementation slice
+## Remaining validation slice
 
-Implement one complete, small path: understandable clarification → short plan and plan review → applicable approval → branch check → native tasks → bounded implementation → current-code verification and agent review → local checkpoint → resume in a fresh session. Add bounded parallel workers and PR delivery only after this path and its permission/recovery stop gates work reliably. Incorporate ADR recording and relevant security/UI/UX checks without forcing unrelated cleanup or redesign.
+Execute the required acceptance scenarios against live sessions with varied capabilities, especially permission revocation, interrupted workers, resume staleness, cleanup safety, security findings, branch/PR recovery and reduced-capability paths. Record actual observations and fix behavior gaps rather than treating the scenario table as a pass. Broader install discovery and agent-specific behavior also remain unverified.
 
 Keep installed instructions coherent during migration: update documentation, skill metadata and entry points together, and do not install contradictory old and new workflows side by side by accident.
