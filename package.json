@@ -1,15 +1,17 @@
 {
   "name": "edwardnguyen2854-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Issue-first AI development skills for planning, building, reviewing, and shipping with GitHub Issues.",
+  "description": "Tool-neutral skills for turning a product vision into working, reviewed, tested software.",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/EdwardNguyen2854/skills.git"
   },
   "license": "MIT",
   "scripts": {
-    "validate": "node scripts/validate-skills.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node scripts/validate-skills.mjs",
+    "check": "npm test && npm run validate"
   },
   "packageManager": "npm@10.9.4"
 }

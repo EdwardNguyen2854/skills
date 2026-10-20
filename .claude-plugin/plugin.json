@@ -1,16 +1,19 @@
 {
   "name": "edwardnguyen2854-skills",
   "skills": [
-    "./skills/engineering/setup",
-    "./skills/engineering/capture",
-    "./skills/engineering/plan",
-    "./skills/engineering/start",
-    "./skills/engineering/build",
-    "./skills/engineering/review",
-    "./skills/engineering/fix-review",
-    "./skills/engineering/ship",
-    "./skills/engineering/discover",
-    "./skills/engineering/spec",
-    "./skills/engineering/handoff"
+    "./skills/setup",
+    "./skills/create",
+    "./skills/resume",
+    "./skills/next",
+    "./skills/clarify",
+    "./skills/plan",
+    "./skills/execute",
+    "./skills/review",
+    "./skills/verify",
+    "./skills/diagnose",
+    "./skills/checkpoint",
+    "./skills/tidy",
+    "./skills/security-review",
+    "./skills/ui-ux"
   ]
 }

@@ -3,21 +3,24 @@
   "notGrouped": "bottom",
   "groupings": [
     {
-      "title": "Issue-First Development",
-      "description": "Skills for planning, building, reviewing, and shipping AI-assisted work through GitHub Issues.",
-      "skills": [
-        "setup",
-        "capture",
-        "plan",
-        "start",
-        "build",
-        "review",
-        "fix-review",
-        "ship",
-        "discover",
-        "spec",
-        "handoff"
-      ]
+      "title": "Start and continue",
+      "description": "Set up, start, resume and move a product forward without project-management overhead.",
+      "skills": ["setup", "create", "resume", "next"]
+    },
+    {
+      "title": "Plan and build",
+      "description": "Clarify outcomes, review plans, coordinate focused workers and preserve progress.",
+      "skills": ["clarify", "plan", "execute", "checkpoint"]
+    },
+    {
+      "title": "Check and deliver",
+      "description": "Verify real behavior, investigate failures and review code or PRs as the agent.",
+      "skills": ["verify", "diagnose", "review"]
+    },
+    {
+      "title": "Product care",
+      "description": "Keep the project clean, safe and usable as it grows.",
+      "skills": ["tidy", "security-review", "ui-ux"]
     }
   ]
 }
