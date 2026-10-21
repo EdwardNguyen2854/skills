@@ -1,10 +1,10 @@
 # Reliability-release candidate manifest
 
-Status: **local implementation candidate; not evaluated, not committed, not a release candidate for publication.**
+Status: **local implementation candidate; committed to `main` at `7889117`; not evaluated, not a release candidate for publication.**
 
 - Base commit: `56d2f5f` on `main`
-- Working branch: `release/reliability-hardening`
-- Working tree: modified and untracked implementation work; no commit, upload, PR, merge, tag, deployment, or publication was performed
+- Candidate commit: `7889117` on `main`; reviewed on branch `release/reliability-hardening`
+- Working tree: clean after the follow-up status update; no tag, deployment, release, or publication was performed
 - Evaluation plan: revision 2
 - Case manifest: [tests/evals/manifest.json](../../tests/evals/manifest.json) (61 cases, 77 run definitions, all `not-run`)
 
@@ -62,7 +62,7 @@ All entries in the case manifest remain `not-run`. In particular:
 
 | Capability | Implementation | Evidence state |
 |---|---|---|
-| Local static validation and generated packaging | Supported | Deterministic checks pass on the current working tree. |
+| Local static validation and generated packaging | Supported | Deterministic checks pass on candidate commit `7889117`. |
 | Request intent and permission events | Specified in contract/skills | Not behaviorally evaluated. |
 | Version-2 records and resume recovery | Specified and seeded fixtures exist | Causal interruption rows not run. |
 | Worker preflight, identity and revocation | Specified in contract/execute | Not evaluated on a worker-capable runtime. |

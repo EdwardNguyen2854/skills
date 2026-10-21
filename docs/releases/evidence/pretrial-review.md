@@ -2,7 +2,7 @@
 
 Status: **self-review only; not independent, and not a G2 pass.**
 
-- Candidate: current working tree on `release/reliability-hardening`, based on `56d2f5f`
+- Candidate: commit `7889117` on `main` (reviewed on `release/reliability-hardening`), based on `56d2f5f`
 - Reviewed: repository scripts, tests, shared contract/templates, all 14 skill bodies, packaging metadata, docs and evaluation manifest
 - Method: source inspection, deterministic test execution and mutation fixtures; no live skill sessions
 
