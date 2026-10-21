@@ -1,5 +1,7 @@
 # Skills Review and Comparative Assessment
 
+> Historical document. This review covers the previous issue-first collection (`skills/engineering/*/SKILL.md`), not the active vision-to-product skills. Its findings and release-blocker status are preserved for context and may be outdated. See the [active workflow](../WORKFLOW.md) and [current implementation status](./docs/redesign/implementation.md).
+
 **Review date:** 2026-10-20  
 **Scope:** Local issue-first skills collection (`skills/engineering/*/SKILL.md`), repo documentation/metadata/validation, and public repository-level comparison with the five requested references. This is a design and packaging review, not a runtime evaluation of each skill against task scenarios.
 

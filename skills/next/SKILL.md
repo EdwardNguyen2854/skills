@@ -1,6 +1,10 @@
 ---
 name: next
 description: Propose and, when authorized, carry out one bounded next product update from vision, current behavior, unfinished work, feedback and risks. Use when the owner asks what to do next, says plan review implement and go, wants to move the next release or update forward without managing stages, or wants delegated judgment-based progress.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: setup clarify plan execute verify review
 ---
 
 # Next
@@ -11,13 +15,16 @@ Read [the shared delivery contract](references/contract.md) and use [the record 
 
 ## Interpret the instruction
 
-- "What should we do next?" or "plan the next update" → inspect and propose/review a plan, then wait.
+- "What should we do next?" or "plan the next update" → inspect, propose and review a plan, then wait. Do not implement.
 - "Plan, review, implement and go" / "take the next update forward" / comparable instruction → perform one bounded update under an explicit scoped judgment grant.
+- "Continue" or "move forward" → continue only an already approved plan/current bounded update, or ask what to continue. It does not select or approve an unseen plan.
 - "Next release" → still one bounded update. Do not infer version bumps, breaking changes, tags, deployment or publication.
+
+A judgment grant must be explicit and name the feature/update or session plus its limits. The agent may not infer delegated approval from a general wish to make progress. A bare "go" after a presented plan approves that reviewed revision only; it does not approve another plan.
 
 "Go" is authorization for the one update's implementation within recorded limits, not for upload/merge/release/publication unless that specific permission is also granted. A PR preference is not upload permission.
 
-A clear instruction to plan, review, implement and go is an explicit feature/update-scoped judgment grant for exactly this update, including approval of the reviewed plan it produces. A bare "go" after a presented plan approves that plan revision only. Before coding, record the grant, its limits and its scope in the feature decisions record when records are authorized; otherwise keep it in the conversation and state that it is session-scoped. Stated limits are binding. Do not use "go" to approve an unreviewed or materially changed plan.
+Before coding, record the grant, its limits and its scope in the feature's permission-event record when records are authorized; otherwise keep it in the conversation and state that it is session-scoped. Stated limits are binding. Do not use "go" to approve an unreviewed or materially changed plan.
 
 ## 1. Inspect honestly
 
@@ -53,6 +60,8 @@ Keep it small enough to plan, implement, verify and review coherently. Split unr
 ## 3. Plan and review
 
 Load `clarify` for genuine uncertainty and `plan` to create the plan. Review the plan before code. In Work with me mode, ask for approval. In judgment mode, approve/review it yourself only within the existing grant; record the approval revision, assumptions and limits.
+
+A plan-only instruction ends here. Present the reviewed plan and wait; do not treat interest or praise as implementation approval. A bare go after this review approves this revision, not a later materially changed plan.
 
 If the plan reveals high-impact uncertainty outside the grant, paid/production/destructive actions, or a material scope change, pause that affected work and ask. Continue safe independent parts if authority remains.
 

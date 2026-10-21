@@ -1,6 +1,9 @@
 ---
 name: clarify
 description: Ask a product owner useful, understandable questions and resolve uncertainty before planning or implementation. Use when requirements are ambiguous, the owner has a broad vision, technical choices affect user experience, assumptions are needed, or the owner is unavailable and has authorized judgment-based progress.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
 ---
 
 # Clarify

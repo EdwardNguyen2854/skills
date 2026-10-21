@@ -1,6 +1,10 @@
 ---
 name: execute
 description: Safely implement an approved plan with bounded tasks, branch isolation, focused workers, checkpoints and integration. Use when a plan is approved, implementation needs coordination, tasks can be delegated, work must resume safely, or changes need to be integrated and handed to verification.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: checkpoint verify diagnose
 ---
 
 # Execute
@@ -21,6 +25,17 @@ Confirm:
 - The owner can try the result where the plan says.
 
 If any of these fail, stop the affected work and explain in plain language. Do not silently create branches, discard changes, or widen scope.
+
+## Worker preflight
+
+Before delegating, inspect the actual capabilities available: status, stop/cancellation, notifications and filesystem isolation.
+
+- Give every dispatch a composite identity: workspace/project + feature + task + attempt, plus the plan revision.
+- Persist the dispatch intent, authority reference, intended workspace and owned paths before launch; persist the returned worker ID after launch.
+- If status/stop is unavailable, do not use an unattended shared-workspace writer. Use foreground/sequential work, or an approved isolated worktree with a workable stop boundary.
+- Workers recheck authority before each new write batch; a packet snapshot cannot override a later revocation.
+- On revocation, stop new dispatches, require acknowledgement or verified termination, or isolate the work and block conflicting integration.
+- A fresh context is not a filesystem sandbox. Never assume conversations isolate files.
 
 ## Prepare tasks
 
@@ -60,7 +75,7 @@ At meaningful boundaries, update `.work/features/<id>/progress.md` (when authori
 - Worker/attempt IDs and unresolved ownership.
 - Findings, blockers and exact next action.
 
-Keep the previous valid checkpoint until the replacement is complete; avoid truncated writes. Workers do not write shared records.
+Keep the previous valid checkpoint until the replacement is complete. Write and validate a complete staged replacement before replacing the current progress file; avoid truncated writes. A staged or previous file is not current authority. Workers do not write shared records.
 
 ## Finish
 

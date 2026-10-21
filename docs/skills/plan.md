@@ -16,6 +16,6 @@ A reviewed plan revision that is approved, awaiting approval or clearly blocked.
 
 ## Key safeguard
 
-Small work gets a short plan, not an exemption. Material changes require a revised, re-reviewed plan and applicable approval.
+Small work gets a short plan, not an exemption. Material changes require a revised, re-reviewed plan and applicable approval. A planning-only request stops after the reviewed plan; a later bare "go" approves that revision only.
 
 See the [skill instructions](../../skills/plan/SKILL.md), [shared contract](../../skills/references/contract.md) and [workflow](../../WORKFLOW.md).

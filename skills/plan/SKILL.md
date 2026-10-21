@@ -1,11 +1,17 @@
 ---
 name: plan
 description: Create and review a careful, right-sized implementation plan before writing code. Use when a feature or update needs a plan, the owner asks to plan before implementation, scope needs decomposition, risks or architecture decisions need analysis, or a plan revision needs approval.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: clarify review
 ---
 
 # Plan
 
 Produce a plan a coding agent can follow and the owner can understand. Do not write application code during planning.
+
+A request to plan, propose, or review a plan is not implementation authorization. Stop after presenting the reviewed plan unless the same instruction separately authorizes implementation or an explicit judgment grant covers it.
 
 Read [the shared delivery contract](references/contract.md) and use [the record templates](references/templates.md).
 
@@ -79,6 +85,6 @@ Revise blocking weaknesses. Plan review is not code review.
 
 Post or present a concise plan for the owner. If records are authorized, write `.work/features/<id>/plan.md` using the template; otherwise keep the plan in the conversation and available live tasks.
 
-Ask for approval of the plan revision. In judgment mode, approve it yourself only when an explicit grant covers the update and the plan is within it. Record the approver, revision and limits. A general positive remark about the idea is not approval of an unseen plan.
+Ask for approval of the plan revision. In judgment mode, approve it yourself only when an explicit grant covers the update and the plan is within it. Record the approver, revision and limits. A general positive remark about the idea is not approval of an unseen plan. A bare "go" after the reviewed plan approves that revision only; it does not authorize a materially changed plan or any delivery action.
 
 On approval, hand control to `execute`. If implementation later needs a material scope/assumption change, revise and re-review the affected plan before continuing.

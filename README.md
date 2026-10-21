@@ -14,6 +14,8 @@ Install the collection:
 npx skills add edwardnguyen2854/skills
 ```
 
+Install the collection together. Supporting skills are loaded by the entry points and are not written as inline fallbacks; if a required sibling is missing, the agent stops safely and explains what to install. A single-skill install of `create` or `next` alone is not a complete workflow.
+
 Then describe what you want to build. To configure project guidance and local progress records first:
 
 ```text
@@ -124,11 +126,11 @@ With approval, setup creates a small `.work/` record:
 
 Significant long-lived architecture choices also get ADRs at an existing project convention, otherwise `docs/adr/`.
 
-Native task and delegation capabilities are used when available; `.work/` is compact durable memory, not a replacement scheduler. Before resuming, the agent checks actual files, branch/PR state and evidence instead of trusting checkboxes. Permission is recovered from current authoritative records, never by rolling back to an older snapshot that granted more.
+Native task and delegation capabilities are used when available; `.work/` is compact durable memory, not a replacement scheduler. Before resuming, the agent checks actual files, branch/PR state and evidence instead of trusting checkboxes. Permission is recovered from immutable permission events, never by rolling back to an older snapshot that granted more. Records use explicit version 2; unsupported or ambiguous older records are read-only until an authorized migration.
 
 If records are declined, an approved alternative location or session-only help is available; durable resume and ADR promises then do not apply.
 
-See the full [workflow](./WORKFLOW.md), the [shared contract](./skills/references/contract.md) and [record/ADR templates](./skills/references/templates.md).
+See the full [workflow](./WORKFLOW.md), the [shared contract](./skills/references/contract.md) and [record/ADR templates](./skills/references/templates.md). Migration, uninstall and recovery guidance is in [docs/migration.md](./docs/migration.md); worked examples are in [docs/examples/](./docs/examples/README.md).
 
 ## Design
 
@@ -138,23 +140,26 @@ The redesign rationale, detailed safeguards and acceptance scenarios live in:
 - [Product quality and delivery](./docs/redesign/product-quality.md)
 - [Acceptance scenarios](./docs/redesign/scenarios.md)
 - [Review results](./docs/redesign/review-results.md)
+- [Next-release plan](./docs/releases/next-release-plan.md), [evaluation plan](./docs/releases/next-release-evaluation-plan.md) and [candidate evidence](./docs/releases/candidate-manifest.md)
 
 The previous issue-first collection is preserved under [`legacy/`](./legacy/README.md). It is not part of the active plugin.
 
 ## Development
 
-Requires Node.js 20+.
+Requires Node.js 22.18 or newer for repository checks. The installed skills themselves are Markdown and do not require Node in a target application.
 
 ```bash
-npm test                 # parser, validator and packaging tests
+npm ci                   # install locked validation dependencies
+npm test                 # parser, path, validator and packaging tests
 npm run sync:references  # regenerate per-skill installed reference copies
+npm run sync:notices     # regenerate per-skill MIT notices
 npm run validate
-npm run check            # both
+npm run check            # tests + both generated-copy checks + validation
 ```
 
-Each skill ships a `references/` directory generated from `skills/references/`, because installers copy only the individual skill directory. Treat those directories as generated: edit the shared source files, then run `npm run sync:references`. Hand-authored files in a skill's `references/` directory are not preserved; validation fails if an installed copy is missing, stale or obsolete.
+Each skill ships a `references/` directory generated from `skills/references/`, because installers copy only the individual skill directory. Treat those directories as generated: edit the shared source files, then run `npm run sync:references`. Hand-authored files in a skill's `references/` directory are not preserved; validation fails if an installed copy is missing, stale or obsolete. Shared reference sources must be flat regular `.md` files; linked directories, nested entries and non-Markdown extras fail for inspection rather than being recursively deleted. Each skill also ships a generated `LICENSE` copied from the root MIT notice; run `npm run sync:notices` after changing the root notice.
 
-Validation also checks frontmatter, unique names, descriptions, relative links inside each skill, docs, plugin wiring, skills.sh groupings and required template fields. It does not prove runtime skill behavior; the acceptance scenarios must be exercised separately.
+Validation checks strict YAML frontmatter, metadata and grouping shapes, unique canonical skill paths, Markdown links and real heading anchors, required docs/templates, physical containment and generated inventories. Repository-managed paths reject symbolic links and Windows junctions. It does not prove runtime skill behavior; the acceptance scenarios must be exercised separately.
 
 ## Acknowledgements
 

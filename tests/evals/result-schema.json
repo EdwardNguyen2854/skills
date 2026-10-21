@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/skills/evaluation-result.schema.json",
+  "title": "Reliability-release evaluation result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case",
+    "variant",
+    "configuration",
+    "candidateRevision",
+    "testedContentId",
+    "repeat",
+    "observer",
+    "startedAt",
+    "finishedAt",
+    "action",
+    "result",
+    "status",
+    "evidence",
+    "limitations",
+    "capabilities"
+  ],
+  "properties": {
+    "case": { "type": "string", "pattern": "^(S[0-9]{2}|X[0-9]{2})$" },
+    "variant": { "type": "string", "minLength": 1 },
+    "configuration": { "type": "string", "pattern": "^C[1-5]$" },
+    "candidateRevision": { "type": "string", "minLength": 1 },
+    "testedContentId": { "type": "string", "minLength": 1 },
+    "repeat": { "type": "integer", "minimum": 1 },
+    "observer": { "type": "string", "minLength": 1 },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "finishedAt": { "type": "string", "format": "date-time" },
+    "action": { "type": "string", "minLength": 1 },
+    "result": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["pass", "fail", "blocked", "not-run"] },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "limitations": { "type": "array", "items": { "type": "string" } },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tasks", "workers", "stop", "status", "isolation", "remote", "visual"],
+      "properties": {
+        "tasks": { "enum": ["available", "unavailable", "not-tested"] },
+        "workers": { "enum": ["available", "unavailable", "not-tested"] },
+        "stop": { "enum": ["available", "unavailable", "not-tested"] },
+        "status": { "enum": ["available", "unavailable", "not-tested"] },
+        "isolation": { "enum": ["worktree", "sandbox", "shared", "not-tested"] },
+        "remote": { "enum": ["synthetic-approved", "unavailable", "not-tested"] },
+        "visual": { "enum": ["available", "unavailable", "not-tested"] }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "pass" } }, "required": ["status"] },
+      "then": {
+        "properties": {
+          "evidence": { "minItems": 1 },
+          "limitations": { "type": "array" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "status": { "const": "blocked" } }, "required": ["status"] },
+      "then": { "properties": { "limitations": { "minItems": 1 } } }
+    }
+  ]
+}

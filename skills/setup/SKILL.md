@@ -1,6 +1,9 @@
 ---
 name: setup
 description: Set up a project for vision-to-product delivery with minimal local progress records, architecture-decision guidance and branch/PR preferences. Use when first using these skills in a project, when the owner asks to configure the workflow, or when project guidance and record locations need to be created or updated safely.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
 ---
 
 # Setup
@@ -27,8 +30,9 @@ Do not infer that the project wants GitHub Issues, labels, Projects, milestones 
 
 Explain in plain language and ask before writing. A minimal setup may add:
 
-- `.work/project.md` with purpose, active work, preferences and authoritative project permissions.
+- `.work/project.md` with purpose, active work, preferences and authoritative project permission events.
 - A short project agent-guidance section saying to read the project record and use `resume` when continuing.
+- If `.work/` is unsuitable, an explicit `Delivery records: <path>` pointer in existing guidance; do not create a hidden configuration file or scan arbitrary files.
 - ADR guidance/location only if one does not already exist.
 - Branch/PR preferences, distinct from upload/merge permission.
 
@@ -51,7 +55,7 @@ Ask or infer:
 - Whether they want agent-approved plans under explicitly delegated judgment.
 - Any limits on local commits, upload/PR creation, spending or production access.
 
-Do not turn preferences into broad authorization. Record each grant with scope, reference and status. Default to Work with me and no upload/merge/release permission. Permission rows are append-only: revoke by adding/changing status while retaining the original owner reference and any superseded/revoked history.
+Do not turn preferences into broad authorization. Record each grant as an immutable permission event with scope, owner reference and any limits. Default to Work with me and no upload/merge/release permission. Permission events are append-only: revoke or supersede by adding an event that references the earlier one; never edit or delete the original owner reference or revocation history. Read permission history as current events, not as a mutable status column.
 
 ## 4. Write safely
 

@@ -2,6 +2,34 @@
 
 All notable changes to this skills collection will be documented in this file.
 
+## [Unreleased]
+
+The next version number is not selected. This section records reliability and evidence work on top of the unreleased `0.2.0` content.
+
+### Added
+
+- Immutable permission event history with stable IDs, explicit revoke/supersede events and current-authority recovery.
+- Request-intent routing that separates review, diagnosis and planning from implementation.
+- Version-2 record identities and staged progress replacement with one prior valid checkpoint.
+- Worker capability preflight, composite task/attempt identity, persisted dispatch intent and revocation stop rules.
+- Evidence records tied to tested content, untracked inputs, configuration, dependencies and runtime.
+- An evaluation manifest for all 43 acceptance scenarios and 18 cross-cutting/adversarial cases, with safety repeats and capability configurations.
+- Strict YAML frontmatter validation, AST-based Markdown link/anchor checks, canonical metadata validation and physical containment checks.
+- Generated per-skill MIT notices and a sync check.
+- Windows/Linux CI on Node 22.18.0, latest 22 and latest 24 patches.
+- Migration/rollback guidance and worked examples.
+
+### Changed
+
+- Reference sync now rejects linked, nested or unexpected entries instead of following or deleting them.
+- Legacy issue-first files are named `SKILL.historical.md`, preventing recursive `SKILL.md` discovery.
+- Review findings distinguish severity from confidence and record a disposition.
+- Documentation no longer treats plan review or static checks as runtime validation.
+
+### Deprecated
+
+- Version-1/unknown progress and permission records are read-only evidence until an authorized migration.
+
 ## [0.2.0] - Unreleased
 
 ### Added

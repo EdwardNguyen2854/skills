@@ -36,10 +36,26 @@ test("reports missing frontmatter", () => {
   assert.equal(result.fields.name, undefined);
 });
 
-test("ignores comments and unrecognised frontmatter lines", () => {
-  const result = parseFrontmatter("---\n# comment\nname: demo\nbad line\ndescription: Has: a colon\n---\n");
-  assert.equal(result.fields.name, "demo");
-  assert.equal(result.fields.description, "Has: a colon");
+test("allows comments but rejects an invalid mapping line", () => {
+  const commented = parseFrontmatter("---\n# comment\nname: demo\ndescription: \"Has: a colon\"\n---\n");
+  assert.equal(commented.error, null);
+  assert.equal(commented.fields.description, "Has: a colon");
+
+  const invalid = parseFrontmatter("---\nname: demo\nbad line\ndescription: A useful skill\n---\n");
+  assert.notEqual(invalid.error, null);
+  assert.match(invalid.error, /invalid YAML frontmatter/);
+});
+
+test("rejects duplicate keys instead of keeping the last value", () => {
+  const result = parseFrontmatter("---\nname: demo\nname: other\ndescription: A useful skill\n---\n");
+  assert.notEqual(result.error, null);
+  assert.match(result.error, /unique/i);
+});
+
+test("rejects an unclosed quoted scalar", () => {
+  const result = parseFrontmatter("---\nname: demo\ndescription: \"unclosed\n---\n");
+  assert.notEqual(result.error, null);
+  assert.match(result.error, /invalid YAML frontmatter/);
 });
 
 test("parses folded and literal block scalars", () => {
@@ -50,7 +66,7 @@ test("parses folded and literal block scalars", () => {
   assert.equal(literal.fields.description, "First line.\nSecond line.\n");
 });
 
-test("strips YAML comments outside quoted values", () => {
+test("keeps YAML comments outside quoted values but preserves quoted hashes", () => {
   const result = parseFrontmatter("---\nname: demo\ndescription: A useful skill # note\nquote: \"literal # not a comment\"\n---\n");
   assert.equal(result.fields.description, "A useful skill");
   assert.equal(result.fields.quote, "literal # not a comment");

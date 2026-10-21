@@ -2,7 +2,7 @@
 
 `/setup`
 
-Creates the smallest approved project guidance, progress-record location and preference record. It does not install GitHub labels, issue templates, a project board or a second task manager.
+Creates the smallest approved project guidance, progress-record location and preference history. It does not install GitHub labels, issue templates, a project board or a second task manager.
 
 ## Use when
 
@@ -16,6 +16,6 @@ The project has the minimum context needed to start or resume, or the owner has 
 
 ## Key safeguard
 
-Existing guidance is preserved, empty folders and fake decisions are not created, and preferences are never turned into broad upload/merge permission.
+Existing guidance is preserved, empty folders and fake decisions are not created, and preferences are never turned into broad upload/merge permission. Permission grants are immutable events that are revoked rather than rewritten, and an alternate record root needs an explicit approved pointer.
 
 See the [skill instructions](../../skills/setup/SKILL.md), [shared contract](../../skills/references/contract.md) and [workflow](../../WORKFLOW.md).

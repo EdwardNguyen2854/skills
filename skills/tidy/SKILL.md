@@ -1,6 +1,10 @@
 ---
 name: tidy
 description: Audit unused files and project organization, then carry out an approved, recoverable cleanup that keeps the project professional and understandable. Use when the owner asks to clean up, remove unused files, organize the directory, reduce clutter, or review whether the project layout is sound.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: verify
 ---
 
 # Tidy
@@ -14,6 +18,8 @@ Read [the shared delivery contract](references/contract.md).
 Inventory tracked, untracked and ignored files, build/configuration entry points, tests, docs, scripts, packaging, deployment references and generated output. Read relevant guidance and conventions.
 
 Do not treat "no import found" as proof a file is unused. Check likely dynamic loading, plugins, package exports, migrations, fixtures, public URLs, documentation references, external consumers and build tooling. Git history may show origin/purpose; it is not proof of current use.
+
+Before running a cleanup/audit command, inspect what it actually does. A script named "clean" or "test" is not authority to delete outside the approved scope.
 
 Protect by default:
 

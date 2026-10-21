@@ -1,6 +1,10 @@
 ---
 name: ui-ux
 description: Improve the user experience and interface of an application, including user journeys, clarity, accessibility, responsiveness, states, interaction feedback and visual quality. Use when the owner asks to improve UI/UX, usability or design, users struggle with a flow, or a feature needs interface review before delivery.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: verify
 ---
 
 # UI/UX

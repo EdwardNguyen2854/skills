@@ -7,6 +7,10 @@ Copy only the sections needed. Keep entries concise and factual. Replace bracket
 ```md
 # Project
 
+- Record version: 2
+- Project ID: [kebab-case-id]
+- Delivery records: [`.work/` or approved alternate root]
+
 ## Purpose
 
 [Why this exists, in the owner's terms.]
@@ -22,17 +26,17 @@ Copy only the sections needed. Keep entries concise and factual. Replace bracket
 
 ## Active work
 
-| Feature/update | Path | Status |
+| Feature/update | Record path | Status |
 |---|---|---|
 | [Name] | `.work/features/[id]/` | [active/paused/complete] |
 
-## Project-wide permissions
+## Project-wide permission events
 
-Permission rows are append-only. Keep revoked/superseded rows with their owner reference and replacement link.
+Permission events are append-only. Add a revoke/supersede event; never edit or delete an earlier event. Effective permission is derived from the event chain.
 
-| Action | Scope | Status | Owner reference | Limits/expiry |
-|---|---|---|---|---|
-| [local commits/upload branch/open PR] | [project or feature] | [active/revoked/superseded] | [message/date] | [limits] |
+| Event ID | Kind | References | Action | Scope | Owner reference | Limits/expiry | Session | Effective |
+|---|---|---|---|---|---|---|---|---|
+| [PE-001] | [grant/revoke/supersede] | [event ID or —] | [local commits/upload branch/open PR] | [project or feature] | [message/date] | [limits] | [session ID or —] | [date/time] |
 
 ## Verification
 
@@ -49,10 +53,13 @@ Permission rows are append-only. Keep revoked/superseded rows with their owner r
 ```md
 # Plan: [Feature/update name]
 
+- Record version: 2
+- Project ID: [kebab-case-id]
 - Feature ID: [kebab-case-id]
+- Plan ID: [stable id]
 - Plan revision: [N]
 - Status: [draft/awaiting approval/approved/superseded]
-- Approval: [owner/delegated grant reference; revision approved]
+- Approval: [owner/delegated permission event; revision approved]
 - Base/branch intent: [verified base and proposed feature branch]
 
 ## Outcome
@@ -107,12 +114,16 @@ Permission rows are append-only. Keep revoked/superseded rows with their owner r
 ```md
 # Progress: [Feature/update name]
 
+- Record version: 2
+- Project ID: [kebab-case-id]
 - Feature ID: [kebab-case-id]
-- Record version: 1
+- Plan ID: [stable id]
 - Plan revision: [N]
+- Checkpoint ID: [stable id and sequence]
+- Prior checkpoint: [ID/path or none]
 - Checkpoint: [ISO timestamp]
 - Mode: [work-with-me/use-your-judgment]
-- Authority: [permission record reference]
+- Authority: [permission event IDs]
 
 ## Workspace
 
@@ -133,21 +144,27 @@ Permission rows are append-only. Keep revoked/superseded rows with their owner r
 
 | Task/attempt | Worker/status | Ownership | Last known result |
 |---|---|---|---|
-| [T1/attempt-1] | [ID/terminated/completed/unknown] | [paths/worktree] | [summary] |
+| [workspace/feature/T1/attempt-1] | [ID/terminated/completed/unknown] | [paths/worktree] | [summary] |
 
 ## Open findings and questions
 
-- [Impact, severity, location, action/status.]
+- [Impact, severity, confidence, location, action/status.]
 
 ## Next action
 
 [One exact next step and the smallest context needed.]
 ```
 
+Replacing a checkpoint: keep the last valid file as `progress.previous.md`, write and validate a complete `progress.pending.md`, replace `progress.md` using the safest available operation, then verify. A pending or previous file is not a current authority record.
+
 ## `.work/features/<id>/decisions.md`
 
 ```md
 # Decisions: [Feature/update name]
+
+- Record version: 2
+- Project ID: [kebab-case-id]
+- Feature ID: [kebab-case-id]
 
 ## Decision log
 
@@ -163,13 +180,13 @@ Permission rows are append-only. Keep revoked/superseded rows with their owner r
 - Supersedes/links: [D/ADR references]
 - ADR: [path or not significant enough for ADR]
 
-## Feature-scoped permissions
+## Feature-scoped permission events
 
-Permission rows are append-only. Keep revoked/superseded rows with their owner reference and replacement link.
+Permission events are append-only. Add a revoke/supersede event; never edit or delete an earlier event.
 
-| Action | Scope | Status | Owner reference | Limits/expiry |
-|---|---|---|---|---|
-| [action] | [feature/update] | [active/revoked/superseded] | [message/date] | [limits] |
+| Event ID | Kind | References | Action | Scope | Owner reference | Limits/expiry | Session | Effective |
+|---|---|---|---|---|---|---|---|---|
+| [FE-001] | [grant/revoke/supersede] | [event ID or —] | [action] | [feature/update] | [message/date] | [limits] | [session ID or —] | [date/time] |
 ```
 
 ## ADR (`docs/adr/NNNN-short-title.md`)
@@ -207,19 +224,35 @@ Permission rows are append-only. Keep revoked/superseded rows with their owner r
 ## Task packet
 
 ```md
-Task/attempt: [stable ID]
-Plan revision: [N]
-Permission: [record reference and exact scope]
+Task/attempt: [workspace]/[feature]/[task]/attempt-[N]
+Plan ID/revision: [stable ID and approved revision]
+Permission: [event ID and exact scope]
 Outcome: [one bounded result]
 Acceptance: [examples]
 Relevant context: [decisions, selected paths/references]
 Ownership: [files/worktree; no unrelated edits]
 May: [permitted operations]
 Must not: [publication, merge, shared-record updates, delegation, out-of-scope edits]
-Prerequisites: [verified conditions]
-Verification: [steps and expected evidence]
+Prerequisites: [verified conditions and integrated revisions]
+Verification: [steps and expected evidence, including tested content/config]
+Stopping boundary: [what must not be changed or expanded]
 Stop when: [scope conflict, missing requirement, repeated failure, permission needed]
-Return: [changed paths, checks/results, risks, integration notes]
+Return: [changed paths, checks/results, tested content, risks, integration notes]
+```
+
+## Evidence record
+
+```md
+Evidence ID: [stable ID]
+Acceptance ID: [Sxx/ACxx/task]
+Action/command: [what ran]
+Result: [actual outcome]
+Base/head: [revisions or no Git]
+Tracked content: [relevant edits/content identifier]
+Untracked/ignored inputs: [relevant non-secret inputs]
+Config/dependencies/runtime: [versions and configuration]
+Artifacts: [paths and retention limit]
+Limitations: [missing checks or environment]
 ```
 
 ## PR description
@@ -247,6 +280,7 @@ Return: [changed paths, checks/results, risks, integration notes]
 
 - Reviewed base: [stable base revision]
 - Reviewed head: [revision]
-- Result: [ready for authorized delivery/awaiting checks/blocked]
+- Verdict: [ready for authorized delivery/awaiting checks/blocked]
+- Findings: [open/resolved/dismissed evidence/accepted residual]
 - Remaining human gates: [required reviewer/branch rule or none known]
 ```

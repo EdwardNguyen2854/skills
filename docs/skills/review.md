@@ -12,7 +12,7 @@ Reviews plans before implementation and actual code/PR revisions afterward for p
 
 ## Outcome
 
-A revision-specific verdict: ready, awaiting checks, or blocked, with actionable findings and owner-facing impact.
+A revision-specific verdict: ready, awaiting checks, or blocked, with actionable findings that separate severity from confidence and record a disposition. Plan-ready, local-ready, PR-checks-satisfied and merge-ready are distinct claims.
 
 ## Key safeguard
 

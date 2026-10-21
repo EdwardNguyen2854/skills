@@ -16,6 +16,6 @@ Integrated changes ready for current-code verification and agent review, with du
 
 ## Key safeguard
 
-It preserves unrelated work, blocks conflicting writers, verifies worker claims, and stops after repeated failure instead of blindly retrying.
+It preserves unrelated work, checks worker status/stop and ownership before unattended dispatch, rechecks authority after revocation, verifies worker claims, and stops after repeated failure instead of blindly retrying.
 
 See the [skill instructions](../../skills/execute/SKILL.md), [shared contract](../../skills/references/contract.md) and [workflow](../../WORKFLOW.md).

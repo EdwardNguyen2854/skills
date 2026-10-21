@@ -2,7 +2,7 @@
 
 `/checkpoint`
 
-Saves compact, consistent progress, permissions, branch/worker state and evidence so a future session can resume safely.
+Saves compact, consistent progress, permission-event references, branch/worker state and evidence so a future session can resume safely.
 
 ## Use when
 

@@ -1,6 +1,10 @@
 ---
 name: review
 description: Review an implementation plan, code change, or pull request for product fit, correctness, security, architecture, UI/UX and delivery risk. Use when the owner asks for a review, before opening or merging a PR, after significant changes, or when independent agent review of actual code is needed.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: verify
 ---
 
 # Review
@@ -13,7 +17,8 @@ Read [the shared delivery contract](references/contract.md).
 
 Identify whether you are reviewing:
 
-- A plan (before implementation).
+- A plan only (before implementation): judge outcomes, dependencies, risks, verification and simplicity. Plan-ready is not code-ready.
+- A whole-repository or documentation audit: state the inspected content set and limits.
 - Local code changes.
 - A PR, including its actual head revision and base.
 
@@ -68,13 +73,14 @@ Where relevant: clarity, hierarchy, navigation, keyboard/focus, contrast, respon
 
 For each finding include:
 
-- Severity and owner-visible impact.
+- Severity (impact) and confidence (strength of evidence), kept separate.
+- Owner-visible impact.
 - Evidence/reproduction and exact file/line or behavior.
-- Affected revision.
+- Affected revision/content.
 - Suggested correction.
-- Status (open/resolved/accepted residual risk).
+- Disposition: open, resolved, dismissed with evidence, or accepted residual risk.
 
-Separate blocking required fixes from optional suggestions. Confirmed critical/high-impact findings block readiness until fixed/reverified or safely removed from scope. Do not turn optional preferences into scope by stealth. Evidence-backed false positives may be dismissed with rationale.
+Separate blocking required fixes from optional suggestions. Confirmed critical/high-impact findings block readiness until fixed/reverified or safely removed from scope. Do not turn optional preferences into scope by stealth. Evidence-backed false positives may be dismissed with rationale. Medium/low residual acceptance cannot waive mandatory checks or stand in for a required missing check.
 
 Do not fix findings during a review unless asked. Load `diagnose` or `execute` for the fix loop. Re-review material changes and verify the final integrated revision.
 
@@ -86,4 +92,4 @@ State one of:
 - **Awaiting checks** — review passes but required remote/manual checks are outstanding.
 - **Blocked** — required fixes or unresolved evidence remain.
 
-An agent review is not approval to merge or upload. Do not fake a formal human approval or bypass protected branch rules. Record the reviewed base and head, and the result, so later commits cannot inherit stale approval.
+State the scope separately: plan-ready, local-ready, PR-checks-satisfied, merge-approved, or released are different claims. An agent review is not approval to merge or upload. Do not fake a formal human approval or bypass protected branch rules. Record the reviewed base and head, and the result, so later commits cannot inherit stale approval.

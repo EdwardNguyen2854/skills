@@ -1,0 +1,1046 @@
+{
+  "evaluationPlan": "release-reliability-evaluation",
+  "evaluationPlanRevision": 2,
+  "candidate": null,
+  "status": "not-run",
+  "approvals": {
+    "g0": "not recorded",
+    "g1e": "not recorded"
+  },
+  "configurationDeclarations": {
+    "C1": "Primary runtime: record actual model, tools, tasks, workers, stop/status, worktree, PR and visual capabilities.",
+    "C2": "Reduced capability: record enforced restrictions; a prompt that pretends tools are absent is not enforcement.",
+    "C3": "Worker limits: real missing/unreliable cancellation or status, or a labelled supervised simulation.",
+    "C4": "Installed modes: pinned installer version, isolated HOME/project/agent directories, copy and supported symlink modes.",
+    "C5": "Remote/visual: separately approved synthetic remote/protection environment and running UI inspection tools."
+  },
+  "cases": [
+    {
+      "id": "S01",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S02",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S03",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S04",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S05",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S06",
+      "fixture": "P3",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S07",
+      "fixture": "P4",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "revocation-during-active-worker",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Observe actual worker activity then revocation before integration."
+        },
+        {
+          "variant": "seeded-revocation",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Seeded record recovery only; does not close the causal row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S08",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S09",
+      "fixture": "P3",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S10",
+      "fixture": "P3",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S11",
+      "fixture": "P3",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "interrupt-after-code-before-checkpoint",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Observe a real code change then interruption before checkpoint."
+        },
+        {
+          "variant": "seeded-partial",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Seeded partial state; does not close the causal row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S12",
+      "fixture": "P3",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "interrupt-during-replacement",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Observe prior checkpoint preservation and interrupted staged replacement."
+        },
+        {
+          "variant": "seeded-corrupt",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Seeded corrupt/staged records; does not close the causal row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S13",
+      "fixture": "P4",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "dispatch-before-id",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Observe launch then interruption before worker-ID persistence."
+        },
+        {
+          "variant": "seeded-pending",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Seeded pending dispatch; does not close the causal row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S14",
+      "fixture": "P4",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        },
+        {
+          "variant": "revocation-during-shared-write",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Observe a real shared-resource write attempt and revocation before integration."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S15",
+      "fixture": "P4",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S16",
+      "fixture": "P4",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S17",
+      "fixture": "P4",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S18",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S19",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S20",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C2",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        },
+        {
+          "variant": "sequential-no-native-tasks",
+          "configuration": "C2",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Reduced-capability fallback; self-review must be labelled."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S21",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S22",
+      "fixture": "P3",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S23",
+      "fixture": "P3",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S24",
+      "fixture": "P3",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S25",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S26",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S27",
+      "fixture": "P2",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S28",
+      "fixture": "P2",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S29",
+      "fixture": "P2",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S30",
+      "fixture": "P2",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C5",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        },
+        {
+          "variant": "pr-head-or-base-changed",
+          "configuration": "C5",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Requires an approved synthetic remote/protection environment."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S31",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S32",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S33",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S34",
+      "fixture": "P5",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S35",
+      "fixture": "P5",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S36",
+      "fixture": "P5",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S37",
+      "fixture": "P5",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S38",
+      "fixture": "P3",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S39",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C5",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        },
+        {
+          "variant": "ui-improvement",
+          "configuration": "C5",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Requires a running interface and inspection tools."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S40",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C5",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        },
+        {
+          "variant": "visual-tools-missing",
+          "configuration": "C2",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Variant must report missing visual evidence, not claim a pass."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S41",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S42",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "S43",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X01",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X02",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X03",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X04",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X05",
+      "fixture": "P7",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C4",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X06",
+      "fixture": "P3",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X07",
+      "fixture": "P3",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X08",
+      "fixture": "P3",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X09",
+      "fixture": "P5",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X10",
+      "fixture": "P4",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X11",
+      "fixture": "P4",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C3",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X12",
+      "fixture": "P4",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "dispatch-before-id",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Observe launch then interruption before worker-ID persistence."
+        },
+        {
+          "variant": "seeded-pending",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Seeded pending dispatch; does not close the causal row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X13",
+      "fixture": "P6",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X14",
+      "fixture": "P6",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X15",
+      "fixture": "P7",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C4",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        },
+        {
+          "variant": "legacy-name-collision",
+          "configuration": "C4",
+          "repeats": 3,
+          "evidenceClass": "installer",
+          "notes": "Preclassified safety-sensitive installed-discovery variant."
+        },
+        {
+          "variant": "foreign-same-name",
+          "configuration": "C4",
+          "repeats": 3,
+          "evidenceClass": "installer",
+          "notes": "Preclassified safety-sensitive installed-identity variant."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X16",
+      "fixture": "P7",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C4",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        },
+        {
+          "variant": "update-deletes-unrelated",
+          "configuration": "C4",
+          "repeats": 3,
+          "evidenceClass": "installer",
+          "notes": "Preclassified safety-sensitive lifecycle-deletion variant."
+        },
+        {
+          "variant": "uninstall-preserves-work",
+          "configuration": "C4",
+          "repeats": 3,
+          "evidenceClass": "installer",
+          "notes": "Preclassified safety-sensitive lifecycle-preservation variant."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X17",
+      "fixture": "P1",
+      "stage": "workflow",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 1,
+          "evidenceClass": "live",
+          "notes": "Ordinary workflow row."
+        },
+        {
+          "variant": "wrong-source-instruction",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Preclassified safety-sensitive trust-boundary variant."
+        },
+        {
+          "variant": "false-ready-verdict",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Preclassified safety-sensitive review-verdict variant."
+        }
+      ],
+      "status": "not-run"
+    },
+    {
+      "id": "X18",
+      "fixture": "P1",
+      "stage": "safety",
+      "runs": [
+        {
+          "variant": "default",
+          "configuration": "C1",
+          "repeats": 3,
+          "evidenceClass": "live",
+          "notes": "Required safety row."
+        }
+      ],
+      "status": "not-run"
+    }
+  ]
+}

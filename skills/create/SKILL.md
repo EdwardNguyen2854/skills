@@ -1,6 +1,10 @@
 ---
 name: create
 description: Guide a product owner from a vision or change request to working, tested software. Use when the user describes what they want to build, asks for a feature, bug fix, product update, review, or a complete implementation flow. Routes clarification, planning, plan review, branch checks, implementation, testing, agent code review, architecture decisions, cleanup, security, and UI/UX without requiring coding knowledge.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: setup clarify plan execute verify review
 ---
 
 # Create
@@ -16,10 +20,14 @@ Identify whether this is:
 - A new product or substantial direction.
 - A bounded feature/update.
 - A bug fix or polish request.
+- A request to review or audit only: report read-only findings and do not edit code, tests, records, or guidance unless the owner separately authorizes changes.
+- A request to plan or propose only: produce and review the plan, then wait. Approving the plan's wording is not authorization to implement it.
 - A request to resume, tidy, audit security, improve UI/UX, or deliver an existing change.
 - A request for the **next** update, or a full "plan, review, implement and go" instruction. Load `next` for that.
 
 If a skill applies (planning, cleanup, security review, UI/UX, diagnosis, verification, checkpoint), load it. Do not ask the owner to choose among technical skills.
+
+For a read-only review, diagnosis, or planning request, do not force setup, records, branch changes, or implementation. Setup is permission-first and is needed only when implementation or durable coordination actually requires it.
 
 Inspect before questioning:
 
@@ -45,6 +53,8 @@ Repository/tool rules take precedence. Ask before unusual Git operations or proj
 Load `clarify` when important uncertainty remains. Load `plan` to produce the implementation plan and task boundaries.
 
 The plan must include outcomes, acceptance examples, scope, relevant risks and UI/UX implications, affected ADRs, trial environment, verification, dependencies and file ownership. Review it before coding, separately from reviewing the implementation. Fix blocking plan weaknesses and obtain applicable approval of that revision.
+
+Planning-only requests stop after the reviewed plan. Do not begin implementation because the owner says the plan "looks good" while retaining a no-implementation limit. A bare "go" after a reviewed plan approves that revision only; it does not approve an unseen plan or any upload, merge, release, or publication.
 
 If this is the first use in the project, or the discovery/guidance pointer and `.work/` records do not exist, load `setup` and follow its permission-first flow before creating records or guidance. Ask before writing a discovery pointer; do not assume automatic loading.
 

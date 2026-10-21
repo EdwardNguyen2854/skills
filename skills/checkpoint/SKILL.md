@@ -1,6 +1,9 @@
 ---
 name: checkpoint
 description: Save a compact, consistent snapshot of plan, progress, permissions, branch, workers and evidence so another session can resume safely. Use when pausing work, handing off, switching agents, before context compaction, when blocked, after meaningful milestones, or before unattended or parallel work.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
 ---
 
 # Checkpoint
@@ -13,8 +16,8 @@ Read [the shared delivery contract](references/contract.md) and use [the record 
 
 Record, concisely:
 
-- Record version, feature ID, plan revision and timestamp.
-- Collaboration mode and authoritative permission reference.
+- Record version `2`, project/workspace identity, feature ID, plan ID/revision, checkpoint ID/sequence, prior checkpoint and timestamp.
+- Collaboration mode and authoritative permission event IDs.
 - Working directory, branch purpose/base/head, related PR, uncommitted/unfinished paths.
 - Task IDs, dependencies, status and a one-line reason for each blocker.
 - Verification evidence tied to tested working-tree content, plus relevant configuration/dependencies.
@@ -38,8 +41,10 @@ If records are not authorized, keep the same information in the conversation/liv
 ## Write safely
 
 - Only the coordinator updates shared workflow records and the native task view.
-- Keep the last valid checkpoint until the replacement is complete.
-- Avoid truncated writes; if replacement cannot be completed safely, keep the prior version and report it.
+- Keep the last valid checkpoint as `progress.previous.md` and write a complete `progress.pending.md`.
+- Validate the staged replacement, then replace `progress.md` using the safest operation available and verify it.
+- Avoid truncated writes; if replacement cannot be completed safely, keep the prior version and report the partial state.
+- Retain one prior valid checkpoint, not an accumulating backup pile.
 - Do not auto-commit or upload progress records.
 
 Progress records mirror verified reality; native tasks remain the live execution view. Do not maintain competing authority or copy permission grants into progress.

@@ -1,11 +1,17 @@
 ---
 name: diagnose
 description: Investigate a bug, failing test, performance problem, or unexpected behavior with a reproducible feedback loop instead of guessing. Use when something is broken or slow, a fix failed, tests fail without a clear cause, or repeated retries are not producing new evidence.
+metadata:
+  collection: edwardnguyen2854-skills
+  workflow-contract: "2"
+  required-skills: verify
 ---
 
 # Diagnose
 
 Find and fix the cause, not just the symptom.
+
+A diagnosis request authorizes read-only investigation. Adding logging, tests, instrumentation, configuration changes or a fix is implementation: do it only when the request or an approved plan covers it. Otherwise report the evidence and propose the next step.
 
 Read [the shared delivery contract](references/contract.md).
 
