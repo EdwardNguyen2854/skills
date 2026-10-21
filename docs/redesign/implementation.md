@@ -1,6 +1,6 @@
 # Implementation status
 
-Status: implemented and statically validated on the current working tree; **no acceptance scenario has been executed**, no installer lifecycle was verified, and no release gate is satisfied. This is a local review candidate, not a production-ready release.
+Status: implemented and statically validated on candidate commit `7889117`; **no acceptance scenario has been executed**, no installer lifecycle was verified, and no release gate is satisfied. This is a local review candidate, not a production-ready release.
 
 See the [candidate manifest](../releases/candidate-manifest.md) for evidence and the [evaluation manifest](../../tests/evals/manifest.json) for the 61 registered cases.
 
